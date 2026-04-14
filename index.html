@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fakentines 💌</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+      background: radial-gradient(circle at top, #ffe6f0, #fff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      padding: 40px 25px;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 20px;
+      color: #4b1e2f;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      border: none;
+      border-radius: 30px;
+      padding: 12px 25px;
+      margin: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      position: absolute;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background: #d6336c;
+      color: white;
+      left: 20%;
+    }
+
+    .no {
+      background: #eee;
+      left: 55%;
+    }
+
+    .message {
+      margin-top: 25px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #3a0f1f;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .show {
+      opacity: 1;
+    }
+
+    .bouquet {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 1s ease;
+    }
+
+    .bouquet.show {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    .petal {
+      position: absolute;
+      top: -10px;
+      font-size: 20px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    iframe {
+      margin-top: 20px;
+      border-radius: 12px;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    iframe.show {
+      opacity: 1;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div id="bouquet" class="bouquet">🌹💐🌹</div>
+
+    <h1>Will you be my Fakentines, Nalini? 💖</h1>
+
+    <div class="buttons">
+      <button class="yes" onclick="showYes()">Yes ❤️</button>
+      <button id="noBtn" class="no">No 🙈</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <iframe id="music"
+      width="100%"
+      height="80"
+      src="https://www.youtube.com/embed/4s5v2f5y0kA?enablejsapi=1"
+      allow="autoplay">
+    </iframe>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * 250;
+      const y = Math.random() * 60;
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    function showYes() {
+      document.getElementById("message").innerHTML =
+        "I love you forever my fakentine Nalini 🖤🌹";
+      document.getElementById("message").classList.add("show");
+
+      const bouquet = document.getElementById("bouquet");
+      bouquet.classList.add("show");
+
+      document.getElementById("music").classList.add("show");
+
+      startPetals();
+    }
+
+    function startPetals() {
+      for (let i = 0; i < 25; i++) {
+        let petal = document.createElement("div");
+        petal.classList.add("petal");
+        petal.innerHTML = "🌹";
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = (3 + Math.random() * 5) + "s";
+        petal.style.fontSize = (16 + Math.random() * 20) + "px";
+
+        document.body.appendChild(petal);
+      }
+    }
+  </script>
+
+</body>
+</html>
